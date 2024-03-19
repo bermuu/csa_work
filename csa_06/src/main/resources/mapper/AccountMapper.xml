@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    namespace:命名空间
+-->
+<mapper namespace="Mapper.AccountMapper">
+    <!--   1.查询所有记录    -->
+    <select id="findAll" resultType="domain.Account">
+        select * from account;
+    </select>
+    <!--   2.通过id删除记录    -->
+    <delete id="deleteByPrimaryKey" parameterType="String">
+        delete from account where id = #{id};
+    </delete>
+    <!--   3.插入记录    -->
+    <insert id="insert" parameterType="domain.Account">
+        INSERT IGNORE INTO account (id, name, money, createtime, updatetime) VALUES (#{id}, #{name}, #{money}, #{createtime}, #{updatetime});
+    </insert>
+    <!--   4.通过id查找对象    -->
+    <select id="selectByPrimaryKey" parameterType="String" resultType="domain.Account">
+        select * from account where id = #{id};
+    </select>
+    <!--   5.通过id更新对象    -->
+    <update id="updateByPrimaryKey" parameterType="domain.Account">
+        update account set money = #{money} where id = #{id};
+    </update>
+</mapper>
